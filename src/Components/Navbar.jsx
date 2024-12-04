@@ -1,16 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import './Navbar.css'
+import "./Navbar.css";
 
 const Navbar = () => {
-  const { user, handleSignOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState("light");
-  const handleToggle = (e) => {
-    const newTheme = e.target.checked ? "synthwave" : "dark";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
+  const { user, handleSignOut, theme, handleToggle } = useContext(AuthContext);
+  const location = useLocation();
+
   const links = (
     <>
       <li>
@@ -35,7 +31,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className={`w-10/12 mx-auto ${theme==='dark'?'text-white':'text-black'}`}>
+    <div className={`w-10/12 mx-auto `}>
       <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
@@ -65,15 +61,55 @@ const Navbar = () => {
           <a className="font-bold text-4xl text-[#e02929]">FilmyScope</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-5 font-medium px-1">{links}</ul>
+          <ul
+            className={`flex gap-5 font-medium px-1 ${
+              theme === "dark" ? "text-white" : "text-black"
+            }`}
+          >
+            {links}
+          </ul>
         </div>
         <div className="navbar-end">
-        <input
-          type="checkbox"
-          value={theme}
-          onChange={handleToggle}
-          className="toggle theme-controller mr-3"
-        />
+          <div className={`flex mr-2  ${
+                location?.pathname === "/" ? "block" : "hidden"
+              }`}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-1"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <input
+              type="checkbox"
+              value={theme}
+              onChange={handleToggle}
+              className={`toggle theme-controller mr-1`}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-3"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+            </svg>
+          </div>
+
           {user && user?.email ? (
             <>
               <div className="relative group mr-3">
@@ -82,15 +118,23 @@ const Navbar = () => {
                   {user?.displayName}
                 </div>
               </div>
-              <Link onClick={handleSignOut}><button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">Logout</button></Link>
+              <Link onClick={handleSignOut}>
+                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">
+                  Logout
+                </button>
+              </Link>
             </>
           ) : (
             <>
               <Link className=" mr-3" to={"/login"}>
-                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">Login</button>
+                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">
+                  Login
+                </button>
               </Link>
               <Link className="" to={"/register"}>
-                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">Register</button>
+                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">
+                  Register
+                </button>
               </Link>
             </>
           )}

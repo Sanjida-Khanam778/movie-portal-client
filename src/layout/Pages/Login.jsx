@@ -11,9 +11,6 @@ const Login = () => {
   const {register, handleSubmit, formState: {errors}} = useForm()
 
   const handleForm = (data) => {
-    // e.preventDefault();
-console.log(data.email)
-    // const form = e.target;
     const email = data.email;
     const password = data.password;
 

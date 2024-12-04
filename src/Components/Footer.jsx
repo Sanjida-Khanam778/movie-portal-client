@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Footer = () => {
+  const {theme} = useContext(AuthContext)
   return (
     <div>
-      <footer className="footer footer-center text-white rounded p-10">
+      <footer className={`footer footer-center rounded p-10 ${theme==='dark'?'text-white':'text-black'}`}>
         <nav className="grid grid-flow-col gap-4">
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>
