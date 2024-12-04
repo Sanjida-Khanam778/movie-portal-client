@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import './Navbar.css'
 
 const Navbar = () => {
   const { user, handleSignOut } = useContext(AuthContext);
@@ -28,8 +29,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="w-10/12 mx-auto text-white">
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -55,29 +56,29 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">FilmyScope</a>
+          <a className="font-bold text-4xl text-[#e02929]">FilmyScope</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="flex gap-5 font-medium px-1">{links}</ul>
         </div>
         <div className="navbar-end">
           {user && user?.email ? (
             <>
-              <div className="relative group">
-                <img src={user?.photoURL} className="h-10 w-10 rounded-full" />
+              <div className="relative group mr-3">
+                <img src={user?.photoURL} className="h-12 w-12 rounded-full" />
                 <div className="absolute z-10 w-32 -bottom-8 -right-10 transform -translate-x-1/2 bg-white text-black text-sm px-3 py-1 opacity-0 group-hover:opacity-100 transition duration-300">
                   {user?.displayName}
                 </div>
               </div>
-              <Link onClick={handleSignOut}>Logout</Link>
+              <Link onClick={handleSignOut}><button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">Logout</button></Link>
             </>
           ) : (
             <>
-              <Link className="btn" to={"/login"}>
-                Login
+              <Link className=" mr-3" to={"/login"}>
+                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">Login</button>
               </Link>
-              <Link className="btn" to={"/register"}>
-                Register
+              <Link className="" to={"/register"}>
+                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">Register</button>
               </Link>
             </>
           )}

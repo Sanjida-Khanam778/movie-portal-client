@@ -1,19 +1,21 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const { setUser, handleGoogleLogin, handleLogin } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const {register, handleSubmit, formState: {errors}} = useForm()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    // console.log(email, password);
+  const handleForm = (data) => {
+    // e.preventDefault();
+console.log(data.email)
+    // const form = e.target;
+    const email = data.email;
+    const password = data.password;
 
     handleLogin(email, password)
       .then((res) => {
@@ -41,30 +43,21 @@ const Login = () => {
         <div className="hero-content">
         <h2 className="text-4xl text-center">Welcome Back! Log In to Continue</h2>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form onSubmit={handleSubmit} className="card-body">
+            <form onSubmit={handleSubmit(handleForm)} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
+                <input className="input input-bordered" {...register("email", {required:"This is required"} )} placeholder="email" type="email"/>
+                <p>{errors.email?.message}</p>
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
+                <input className="input input-bordered" {...register("password", {required:"This is required"})} placeholder="password" type="password" />
+                <p>{errors.email?.message}</p>
+
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?

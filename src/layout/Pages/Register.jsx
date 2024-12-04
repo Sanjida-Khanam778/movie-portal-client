@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const Register = () => {
@@ -48,6 +48,7 @@ const Register = () => {
 
   const handleSocialLogin = () => {
     handleGoogleLogin().then(() => {
+      // setUser(res.user)
       navigate("/");
     })
     .catch(err=>{
@@ -57,7 +58,6 @@ const Register = () => {
 
   return (
     <div>
-      {/* <ToastContainer position="top-center"></ToastContainer> */}
       <div>
         <div className="hero bg-base-200 min-h-screen">
           <div className="hero-content">

@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../root/Root";
-import Home from "../layout/Home";
-import AllMovies from "../layout/AllMovies";
-import AddMovies from "../layout/AddMovies";
-import MyFavorites from "../layout/MyFavorites";
-import Extra from "../layout/Extra";
-import Login from "../layout/Login";
-import Register from "../layout/Register";
+import Login from "../layout/Pages/Login";
+import Register from "../layout/Pages//Register";
 import PrivateRoute from "../Components/PrivateRoute";
+import Home from "../layout/Pages/Home";
+import AllMovies from "../layout/Pages/AllMovies";
+import AddMovies from "../layout/Pages/AddMovies";
+import MyFavorites from "../layout/Pages/MyFavorites";
+import Extra from "../layout/Pages/Extra";
+import ErrorPage from "../layout/Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         }
     ]
   },
+  {
+    path: '*',
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 export default router;
