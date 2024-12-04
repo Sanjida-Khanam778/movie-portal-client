@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import './Navbar.css'
 
 const Navbar = () => {
   const { user, handleSignOut } = useContext(AuthContext);
+  const [theme, setTheme] = useState("light");
+  const handleToggle = (e) => {
+    const newTheme = e.target.checked ? "synthwave" : "dark";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
   const links = (
     <>
       <li>
@@ -29,7 +35,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="w-10/12 mx-auto text-white">
+    <div className={`w-10/12 mx-auto ${theme==='dark'?'text-white':'text-black'}`}>
       <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
@@ -62,6 +68,12 @@ const Navbar = () => {
           <ul className="flex gap-5 font-medium px-1">{links}</ul>
         </div>
         <div className="navbar-end">
+        <input
+          type="checkbox"
+          value={theme}
+          onChange={handleToggle}
+          className="toggle theme-controller mr-3"
+        />
           {user && user?.email ? (
             <>
               <div className="relative group mr-3">

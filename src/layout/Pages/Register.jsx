@@ -48,7 +48,6 @@ const Register = () => {
 
   const handleSocialLogin = () => {
     handleGoogleLogin().then(() => {
-      // setUser(res.user)
       navigate("/");
     })
     .catch(err=>{

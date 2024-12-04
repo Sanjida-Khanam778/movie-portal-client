@@ -6,7 +6,8 @@ import Footer from '../Components/Footer';
 const Root = () => {
     return (
         <div>
-            <header className='bg-opacity-95 bg-[#03020e] py-5'>
+
+            <header className='py-5'>
 
             <Navbar></Navbar>
             </header>
