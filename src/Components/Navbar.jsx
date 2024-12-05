@@ -31,7 +31,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className={`w-10/12 mx-auto `}>
+    <div className={`w-10/12 mx-auto`}>
       <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
@@ -58,7 +58,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="font-bold text-4xl text-[#e02929]">FilmyScope</a>
+          <a className="font-bold text-xl md:text-2xl xl:text-4xl text-[#e02929]">FILMYSCOPE</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul

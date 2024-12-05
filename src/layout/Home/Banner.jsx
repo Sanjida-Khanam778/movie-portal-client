@@ -4,8 +4,8 @@ const Banner = () => {
   const slides = [
     {
       id: "slide1",
-      image: "https://i.ibb.co.com/0M24JcT/theplatform2.jpg",
-      title: "THE PLATFORM 2 (2024)",
+      image: "https://i.ibb.co.com/5BffSy2/SECTOR-36.jpg",
+      title: "Sector 36 (2024)",
       description: "Horror | Sc-Fi",
       rating: "IMDB Rating: 5.5/10"
     },
@@ -27,20 +27,20 @@ const Banner = () => {
     },
     {
       id: "slide4",
-      image: "https://i.ibb.co.com/5BffSy2/SECTOR-36.jpg",
-      title: "Serene Escapes",
-      description: "Find peace and tranquility in stunning landscapes.",
+      image: "https://i.ibb.co.com/0M24JcT/theplatform2.jpg",
+      title: "THE PLATFORM 2 (2024)",
+      description: "Horror | Sc-Fi",
       rating: "IMDB Rating: 5.5/10"
 
     },
   ];
 
   return (
-   <div className="w-10/12 mx-auto">
+   <div className="w-10/12 mx-auto mt-16">
      <div className="carousel w-full">
       {slides.map((slide, index) => (
         <div id={slide.id} key={index} className="carousel-item relative w-full">
-          <img src={slide.image} alt={slide.title} className="w-full h-[450px] object-cover" />
+          <img src={slide.image} alt={slide.title} className="w-full h-[550px] border-4 object-cover" />
           <div className="absolute inset-0 bg-black bg-opacity-70"></div>
           <div className="absolute bg-black bg-opacity-30 bottom-10 left-20 flex flex-col items-center justify-center text-center text-white p-4">
             <h2 className="text-4xl font-bold mb-4">{slide.title}</h2>

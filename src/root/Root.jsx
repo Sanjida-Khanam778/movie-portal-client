@@ -7,7 +7,7 @@ const Root = () => {
     return (
         <div>
 
-            <header className='py-5'>
+            <header className='py-5 sticky top-0 z-10 backdrop-blur-2xl bg-opacity-55 bg-base-200'>
 
             <Navbar></Navbar>
             </header>

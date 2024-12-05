@@ -72,7 +72,7 @@ const AddMovies = () => {
       <div className="hero-content">
         <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
           <form onSubmit={handleSubmit(handleForm)} className="card-body">
-            <div className="flex gap-5">
+            <div className="flex gap-5 flex-col md:flex-row">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Poster</span>
@@ -101,7 +101,7 @@ const AddMovies = () => {
                 <p className="text-red-500">{errors.title?.message}</p>
               </div>
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-5 flex-col md:flex-row">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Genre</span>
@@ -134,7 +134,7 @@ const AddMovies = () => {
                 <p className="text-red-500">{errors.duration?.message}</p>
               </div>
             </div>
-            <div className="flex justify-between gap-5">
+            <div className="flex justify-between gap-5 flex-col md:flex-row">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Release Year</span>

@@ -9,6 +9,7 @@ import AddMovies from "../layout/Pages/AddMovies";
 import MyFavorites from "../layout/Pages/MyFavorites";
 import Extra from "../layout/Pages/Extra";
 import ErrorPage from "../layout/Pages/ErrorPage";
+import Details from "../layout/Pages/Details";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
           path: '/allMovies',
           element: <AllMovies></AllMovies>,
           loader: ()=>fetch('http://localhost:5000/movies')
+        },
+        {
+          path:'/details/:id',
+          element: <Details></Details>,
+          loader: ({params})=>fetch(`http://localhost:5000/movies/${params.id}`)
         },
         {
           path: 'addMovie',
