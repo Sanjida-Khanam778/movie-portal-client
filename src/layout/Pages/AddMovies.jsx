@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddMovies = () => {
   const [err, setErr] = useState("");
+  const { user } = useContext(AuthContext);
+  const email = user.email;
   const {
     register,
     handleSubmit,
@@ -12,7 +16,6 @@ const AddMovies = () => {
 
   const [rating, setRating] = useState(0);
 
-  // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate);
   };
@@ -23,15 +26,46 @@ const AddMovies = () => {
 
     const poster = data.poster;
     const title = data.title;
+    const genre = data.genre;
     const duration = data.duration;
-    console.log(duration);
+    const year = data.releaseYear;
+    const summary = data.summary;
     if (!regex.test(poster)) {
       alert("not ok");
     }
     if (duration <= 60) {
       setErr("more than 60");
     }
-
+    const movie = {
+      email,
+      poster,
+      title,
+      genre,
+      duration,
+      year,
+      rating,
+      summary,
+    };
+    console.log(movie)
+    fetch("http://localhost:5000/movies", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(movie)
+    })
+      .then((res) => res.json())
+      .then((data) => {console.log(data)
+        if(data.insertedId){
+            Swal.fire({
+                title: 'Congrates!',
+                text: 'Movie added successfully',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+        }
+      }
+    );
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -92,7 +126,7 @@ const AddMovies = () => {
                 </label>
                 <input
                   className="input input-bordered"
-                  {...register("duration", {required: "This is required"})}
+                  {...register("duration", { required: "This is required" })}
                   placeholder="minutes"
                   type="number"
                 />
@@ -101,21 +135,6 @@ const AddMovies = () => {
               </div>
             </div>
             <div className="flex justify-between gap-5">
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Rating</span>
-                </label>
-
-                <div className="flex mt-2 items-center gap-2">
-                  <Rating
-                    onClick={handleRating}
-                    size={30}
-                    fillColor="gold"
-                    emptyColor="gray"
-                    allowHalf={true}
-                  />
-                </div>
-              </div>
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Release Year</span>
@@ -141,6 +160,21 @@ const AddMovies = () => {
                   <p className="text-red-500">{errors.releaseYear?.message}</p>
                 )}
               </div>
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">Rating</span>
+                </label>
+
+                <div className="flex px-3 mt-2 items-center gap-2">
+                  <Rating
+                    onClick={handleRating}
+                    size={30}
+                    fillColor="gold"
+                    emptyColor="gray"
+                    allowHalf={true}
+                  />
+                </div>
+              </div>
             </div>
             <div className="form-control">
               <label className="label">
@@ -148,7 +182,10 @@ const AddMovies = () => {
               </label>
               <textarea
                 className="textarea textarea-bordered"
-                {...register("summary", {required:"This is required", minLength:{value:10,message:"At least 10 characters"}})}
+                {...register("summary", {
+                  required: "This is required",
+                  minLength: { value: 10, message: "At least 10 characters" },
+                })}
                 cols="30"
                 rows="2"
               ></textarea>

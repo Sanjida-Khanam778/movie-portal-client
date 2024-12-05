@@ -20,7 +20,8 @@
     "react-router-dom": "^7.0.2",
     "react-simple-star-rating": "^5.1.7",
     "react-toastify": "^10.0.6",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.14.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
