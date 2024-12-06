@@ -6,6 +6,7 @@ import "./Navbar.css";
 const Navbar = () => {
   const { user, handleSignOut, theme, handleToggle } = useContext(AuthContext);
   const location = useLocation();
+  const email = user?.email
 
   const links = (
     <>
@@ -22,7 +23,7 @@ const Navbar = () => {
       )}
       {user && (
         <li>
-          <NavLink to={"/myFavorites"}>My Favorites</NavLink>
+          <NavLink to={`/favorites/${email}`}>My Favorites</NavLink>
         </li>
       )}
       <li>

@@ -10,6 +10,7 @@ import MyFavorites from "../layout/Pages/MyFavorites";
 import Extra from "../layout/Pages/Extra";
 import ErrorPage from "../layout/Pages/ErrorPage";
 import Details from "../layout/Pages/Details";
+import UpdateMovie from "../layout/Pages/UpdateMovie";
 
 const router = createBrowserRouter([
   {
@@ -23,20 +24,21 @@ const router = createBrowserRouter([
         {
           path: '/allMovies',
           element: <AllMovies></AllMovies>,
-          loader: ()=>fetch('http://localhost:5000/movies')
+          loader: ()=>fetch('https://movie-portal-server-ten.vercel.app/movies')
         },
         {
           path:'/details/:id',
           element: <Details></Details>,
-          loader: ({params})=>fetch(`http://localhost:5000/movies/${params.id}`)
+          loader: ({params})=>fetch(`https://movie-portal-server-ten.vercel.app/movies/${params.id}`)
         },
         {
           path: 'addMovie',
           element: <PrivateRoute><AddMovies></AddMovies></PrivateRoute>
         },
         {
-          path: 'myFavorites',
-          element: <PrivateRoute><MyFavorites></MyFavorites></PrivateRoute>
+          path: '/favorites/:email',
+          element: <PrivateRoute><MyFavorites></MyFavorites></PrivateRoute>,
+          loader: ({params})=>fetch(`https://movie-portal-server-ten.vercel.app/favorites/${params.email}`)
         },
         {
           path: 'extra',
@@ -49,6 +51,11 @@ const router = createBrowserRouter([
         {
           path: 'register',
           element: <Register></Register>
+        },
+        {
+          path: '/update/:id',
+          element: <PrivateRoute><UpdateMovie></UpdateMovie></PrivateRoute>,
+          loader: ({params})=>fetch(`https://movie-portal-server-ten.vercel.app/movies/${params.id}`)
         }
     ]
   },

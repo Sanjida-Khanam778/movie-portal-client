@@ -5,7 +5,7 @@ const Footer = () => {
   const {theme} = useContext(AuthContext)
   return (
     <div>
-      <footer className={`footer footer-center rounded p-10 ${theme==='dark'?'text-white':'text-black'}`}>
+      <footer className={`footer footer-center rounded p-10 ${theme==='dark'?'text-white bg-opacity-95 bg-base-300':'text-black bg-gray-200'}`}>
         <nav className="grid grid-flow-col gap-4">
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>

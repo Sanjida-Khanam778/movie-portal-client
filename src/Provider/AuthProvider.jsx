@@ -49,17 +49,13 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const [theme, setTheme] = useState("dark");
-  // useEffect(()=>{
-  //   const savedTheme = localStorage.getItem("theme")
-  //   setTheme(savedTheme)
-  //   document.documentElement.setAttribute("data-theme", savedTheme)
-  // }, [])
+ 
   const handleToggle = (e) => {
-    const newTheme = e.target.checked ? "synthwave" : "dark";
+    const newTheme = e.target.checked ? "light" : "dark";
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
-    // localStorage.setItem("theme", newTheme)
   };
+  
 
   const authInfo = {
     user,

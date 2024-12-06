@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
-import { FaStar, FaClock, FaCalendarAlt, FaPlayCircle } from "react-icons/fa";
-import { BiCategory } from "react-icons/bi";
+import { FaStar, FaClock, FaCalendarAlt } from "react-icons/fa";
+import { BiCategory, BiDetail } from "react-icons/bi";
 
 
 const SingleMovie = ({ movie }) => {
@@ -50,14 +50,15 @@ const SingleMovie = ({ movie }) => {
             size={20}
             readonly={true}
             initialValue={rating}
+            allowFraction
             className="ml-2 mb-1 text-yellow-500"
           />
         </p>
       </div>
 
       <NavLink to={`/details/${_id}`}>
-        <button className="btn btn-primary mt-5 w-full bg-[#e02929] hover:bg-[#df1f1f] text-white rounded-lg py-2">
-          See Details
+        <button className="btn btn-primary mt-5 w-full bg-[#e02929] hover:bg-[#df1f1f] text-lg text-white rounded-lg py-2">
+          See Details <BiDetail className="text-2xl ml-2"></BiDetail>
         </button>
       </NavLink>
     </div>
