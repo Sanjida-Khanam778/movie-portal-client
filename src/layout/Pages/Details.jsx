@@ -30,7 +30,7 @@ const Details = () => {
   
   const handleFavorites = () => {
     const favorites = {
-        _id,
+      // movieId: _id,
       email,
       poster,
       title,

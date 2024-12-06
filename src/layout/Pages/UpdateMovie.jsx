@@ -2,19 +2,21 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { Rating } from 'react-simple-star-rating';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateMovie = () => {
   const data = useLoaderData()
+  const {id} = useParams()
   // const {_id, year, title, summary, poster, genre, duration} = data
-  // console.log(data)
-  const [title, setTitle]  = useState(data.title)
-  const [poster, setPoster]  = useState(data.poster)
-  const [genre, setGenre]  = useState(data.genre)
-  const [duration, setDuration]  = useState(data.duration)
-  const [year, setYear]  = useState(data.year)
-  const [ratings, setRatings]  = useState(data.rating)
-  const [summary, setSummary]  = useState(data.summary)
+  // console.log(id)
+  const [title, setTitle]  = useState(data?.title)
+  const [poster, setPoster]  = useState(data?.poster)
+  const [genre, setGenre]  = useState(data?.genre)
+  const [duration, setDuration]  = useState(data?.duration)
+  const [year, setYear]  = useState(data?.year)
+  const [ratings, setRatings]  = useState(data?.rating)
+  const [summary, setSummary]  = useState(data?.summary)
   const handleChange = (event) => {
     setGenre(event.target.value);
   };
@@ -32,6 +34,7 @@ const UpdateMovie = () => {
   const handleRating = (rate) => {
     setRating(rate);
   };
+
   const handleForm = (data) => {
     setErr("");
     const regex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
@@ -42,6 +45,7 @@ const UpdateMovie = () => {
     const duration = data.duration;
     const year = data.releaseYear;
     const summary = data.summary;
+
     if (!regex.test(poster)) {
       alert("not ok");
     }
@@ -58,27 +62,26 @@ const UpdateMovie = () => {
       rating,
       summary,
     };
-    console.log(movie)
-    // fetch("https://movie-portal-server-ten.vercel.app/movies", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(movie)
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {console.log(data)
-    //     if(data.insertedId){
-    //         Swal.fire({
-    //             title: 'Congrates!',
-    //             text: 'Movie added successfully',
-    //             icon: 'success',
-    //             confirmButtonText: 'Ok'
-    //           })
+    fetch(`https://movie-portal-server-ten.vercel.app/movies/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(movie)
+    })
+      .then((res) => res.json())
+      .then((data) => {console.log(data)
+        if(data.modifiedCount>0){
+            Swal.fire({
+                title: 'Congrates!',
+                text: 'Movie Updated successfully',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
               
-    //     }
-    //   }
-    // );
+        }
+      }
+    );
   };
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -192,7 +195,6 @@ const UpdateMovie = () => {
                     emptyColor="gray"
                     allowFraction
                     initialValue={ratings}
-
                   />
                 </div>
               </div>
