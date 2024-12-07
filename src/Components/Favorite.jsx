@@ -2,6 +2,7 @@ import React from 'react';
 import { Rating } from "react-simple-star-rating";
 import { FaStar, FaClock, FaCalendarAlt } from "react-icons/fa";
 import { BiCategory, BiDetail } from "react-icons/bi";
+import Swal from 'sweetalert2';
 
 const Favorite = ({favorite, favorites, setFavorites}) => {
     const { _id, poster, title, duration, genre, year, rating } = favorite;
@@ -11,8 +12,27 @@ const Favorite = ({favorite, favorites, setFavorites}) => {
         })
         .then(res=>res.json())
         .then(data=>{
-          const remaining = favorites.filter(item=>item._id!==id)
-          setFavorites(remaining)
+          console.log(data)
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+              const remaining = favorites.filter(item=>item._id!==id)
+              setFavorites(remaining)
+            }
+          });
+         
           
         })
       }
