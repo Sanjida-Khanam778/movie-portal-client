@@ -4,14 +4,14 @@ const Banner = () => {
   const slides = [
     {
       id: "slide1",
-      image: "https://i.ibb.co.com/5BffSy2/SECTOR-36.jpg",
-      title: "Sector 36 (2024)",
+      image: "https://i.ibb.co.com/2yqWgBH/slider1.jpg",
+      title: "Harry Porter",
       description: "Horror | Sc-Fi",
       rating: "IMDB Rating: 5.5/10"
     },
     {
       id: "slide2",
-      image: "https://i.ibb.co.com/RY05zGr/ulajh.webp",
+      image: "https://i.ibb.co.com/WGqqJ4S/slider2.webp",
       title: "Nature's Beauty",
       description: "Explore the untouched beauty of the natural world.",
       rating: "IMDB Rating: 5.5/10"
@@ -19,7 +19,7 @@ const Banner = () => {
     },
     {
       id: "slide3",
-      image: "https://i.ibb.co.com/vcNc1cP/AAAABUg-Xc-Y9-SQmum-JULae-T3o-Cy-Rz7eqd-K-sc7r-Xc-Hcax3-Dm-Y-S1-P1t-Cgp-AB2m-NHg6-UWYAc-Gw-Ik-DHGNvu.jpg",
+      image: "https://i.ibb.co.com/kxSrYqW/slider3.jpg ",
       title: "Journey Beyond",
       description: "Embrace the thrill of the unknown and venture far.",
       rating: "IMDB Rating: 5.5/10"
@@ -27,7 +27,7 @@ const Banner = () => {
     },
     {
       id: "slide4",
-      image: "https://i.ibb.co.com/0M24JcT/theplatform2.jpg",
+      image: "https://i.ibb.co.com/b5NcNgJ/slider4.jpg",
       title: "THE PLATFORM 2 (2024)",
       description: "Horror | Sc-Fi",
       rating: "IMDB Rating: 5.5/10"
