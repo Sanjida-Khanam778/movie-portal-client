@@ -11,7 +11,7 @@ const About = () => {
         }`}
       >
         <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold mb-3">
-          About Us
+        Themes That Inspire Us
         </h2>
         <p
           className={`md:text-lg font-medium ${
@@ -22,11 +22,11 @@ const About = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className={`card ${theme==='dark'?'text-black bg-gray-200':'text-black bg-gray-200'} shadow-xl`}>
-          <figure>
-            <img src="https://i.ibb.co/2yqWgBH/slider1.jpg" alt="Mission" />
+        <div className={`card border-2 ${theme==='dark'?'text-black bg-gray-200':'text-black bg-gray-200'} shadow-xl`}>
+          <figure className="bg-white border-b border-black h-[200px]">
+            <img className="h-full" src="https://i.ibb.co.com/RgDjHRh/mission.png" alt="Mission" />
           </figure>
-          <div className="card-body">
+          <div className="card-body border-black">
             <h2 className="card-title font-bold">
               Our Mission
               <div className="badge bg-red-500 border-none text-white">Inspire</div>
@@ -38,9 +38,9 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className={`card ${theme==='dark'?'text-black bg-gray-200':'text-black bg-gray-200'} shadow-xl`}>
-          <figure>
-            <img src="https://i.ibb.co/2yqWgBH/slider1.jpg" alt="Vision" />
+        <div className={`card border-2 ${theme==='dark'?'text-black bg-gray-200':'text-black bg-gray-200'} shadow-xl`}>
+          <figure className="bg-white border-b border-black h-[200px]">
+            <img className="h-full" src="https://i.ibb.co.com/SKb8d15/vision.png" alt="Vision" />
           </figure>
           <div className="card-body">
             <h2 className="card-title font-bold">
@@ -55,9 +55,9 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className={`card ${theme==='dark'?'text-black bg-gray-200':'text-black bg-gray-200'} shadow-xl`}>
-          <figure>
-            <img src="https://i.ibb.co/2yqWgBH/slider1.jpg" alt="Values" />
+        <div className={`card border-2 ${theme==='dark'?'text-black bg-gray-200':'text-black bg-gray-200'} shadow-xl`}>
+          <figure className="border-b border-black h-[200px]">
+            <img className="h-full" src="https://i.ibb.co.com/pzCXfg5/values.jpg" alt="Values" />
           </figure>
           <div className="card-body">
             <h2 className="card-title font-bold">
