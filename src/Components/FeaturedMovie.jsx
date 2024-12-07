@@ -29,7 +29,7 @@ const FeaturedMovie = () => {
           <SingleMovie key={movie._id} movie={movie}></SingleMovie>
         ))}
       </div>
-      <div className="w-full  flex items-center justify-center">
+      <div className="md:w-full w-10/12 mx-auto flex items-center justify-center">
       <NavLink className='w-full md:w-1/3' to={`/allMovies`}> 
         <button className="btn text-lg w-full mx-auto bg-[#e02929] font-bold hover:bg-[#df1f1f] text-gray-100 rounded-lg py-2">
         See All Movies <TbMovie className="text-2xl"></TbMovie>

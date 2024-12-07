@@ -32,7 +32,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className={`w-11/12 lg:w-10/12 mx-auto`}>
+    <div className={`w-11/12 xl:w-10/12 mx-auto`}>
       <div className="navbar px-0">
         <div className="navbar-start">
           <div className="dropdown">
@@ -71,7 +71,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className={`flex mr-2  ${
+          <div className={`flex xl:mr-2  ${
                 location?.pathname === "/" ? "block" : "hidden"
               }`}>
             <svg
@@ -84,7 +84,7 @@ const Navbar = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="mr-1 hidden md:block"
+              className="mr-1 hidden md:block lg:hidden xl:block"
             >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>

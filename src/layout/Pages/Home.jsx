@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../Home/Banner";
 import FeaturedMovie from "../../Components/FeaturedMovie";
+import Faq from "../Home/Faq";
 
 const Home = () => {
  
@@ -10,6 +11,7 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <FeaturedMovie></FeaturedMovie>
+      <Faq></Faq>
     </div>
   );
 };
