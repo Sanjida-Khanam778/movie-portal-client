@@ -6,6 +6,7 @@ const AllMovies = () => {
   const data = useLoaderData();
   const [movies, setMovies] = useState(data);
   const [search, setSearch] = useState("");
+
   useEffect(() => {
     fetch(
       `https://movie-portal-server-ten.vercel.app/movies?searchParams=${search}`
@@ -13,9 +14,10 @@ const AllMovies = () => {
       .then((res) => res.json())
       .then((data) => setMovies(data));
   }, [search]);
+
   return (
-    <div className="w-10/12 mx-auto">
-      <label className="input input-bordered flex items-center gap-2 mt-8 w-1/3 mx-auto">
+    <div className="md:w-11/12 mx-auto">
+      <label className="input input-bordered flex items-center gap-2 mt-8 mx-4 md:w-1/3 md:mx-auto">
         <input
           onChange={(e) => setSearch(e.target.value)}
           type="text"
@@ -35,17 +37,17 @@ const AllMovies = () => {
           />
         </svg>
       </label>
-      {
-        (movies? (
-          <div className="min-h-[51vh] flex justify-center items-center"><p className="text-5xl font-bold"> No Movies to show</p></div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 rounded-xl p-6 my-12">
-            {movies.map((movie) => (
-              <SingleMovie key={movie._id} movie={movie}></SingleMovie>
-            ))}
-          </div>
-        ))
-      }
+      {!movies || movies.length === 0 ? (
+        <div className="min-h-[51vh] flex justify-center items-center">
+          <p className="text-5xl font-bold">No Movies to Show</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 rounded-xl p-6 my-12">
+          {movies.map((movie) => (
+            <SingleMovie key={movie._id} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

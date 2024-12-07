@@ -21,7 +21,6 @@ const Details = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.deletedCount > 0) {
           navigate("/allMovies");
         }
@@ -48,7 +47,6 @@ const Details = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Congrates!",
@@ -64,7 +62,7 @@ const Details = () => {
   // }
   return (
     <div className="min-h-screen flex items-center justify-center my-12">
-      <div className="w-11/12 sm:w-3/4 lg:w-1/2 bg-white p-8 rounded-2xl shadow-lg">
+      <div className="w-11/12 sm:w-3/4 lg:w-1/2 bg-white p-4 md:p-8 rounded-2xl shadow-lg">
         <div>
           <img
             className="rounded-2xl w-full h-84 object-cover"
@@ -123,14 +121,14 @@ const Details = () => {
                 className="w-full mt-5 flex items-center justify-center py-2 text-white bg-red-500 rounded-lg shadow hover:bg-red-600 transition"
               >
                 Delete Movie
-                <MdDeleteForever className="text-2xl ml-2"></MdDeleteForever>
+                <MdDeleteForever className="text-2xl md:ml-2"></MdDeleteForever>
               </button>
               <button
                 onClick={handleFavorites}
                 className="w-full py-2 text-white flex items-center mt-5 justify-center bg-blue-500 rounded-lg shadow hover:bg-blue-600 transition"
               >
                 Add to Favorite
-                <MdFavorite className="text-2xl ml-2"></MdFavorite>
+                <MdFavorite className="text-2xl md:ml-2"></MdFavorite>
               </button>
              </div>
               <Link to={`/update/${_id}`}>

@@ -10,9 +10,10 @@ const Favorite = ({favorite, favorites, setFavorites}) => {
           method: "DELETE"
         })
         .then(res=>res.json())
-        .then(data=>{console.log(data)
+        .then(data=>{
           const remaining = favorites.filter(item=>item._id!==id)
           setFavorites(remaining)
+          
         })
       }
     return (

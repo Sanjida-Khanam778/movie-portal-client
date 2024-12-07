@@ -7,10 +7,10 @@ import Home from "../layout/Pages/Home";
 import AllMovies from "../layout/Pages/AllMovies";
 import AddMovies from "../layout/Pages/AddMovies";
 import MyFavorites from "../layout/Pages/MyFavorites";
-import Extra from "../layout/Pages/Extra";
 import ErrorPage from "../layout/Pages/ErrorPage";
 import Details from "../layout/Pages/Details";
 import UpdateMovie from "../layout/Pages/UpdateMovie";
+import Contact from "../layout/Pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         },
         {
           path:'/details/:id',
-          element: <Details></Details>,
+          element: <PrivateRoute><Details></Details></PrivateRoute>,
           loader: ({params})=>fetch(`https://movie-portal-server-ten.vercel.app/movies/${params.id}`)
         },
         {
@@ -41,8 +41,8 @@ const router = createBrowserRouter([
           loader: ({params})=>fetch(`https://movie-portal-server-ten.vercel.app/favorites/${params.email}`)
         },
         {
-          path: 'extra',
-          element: <Extra></Extra>
+          path: '/contact',
+          element: <Contact></Contact>
         },
         {
           path: 'login',

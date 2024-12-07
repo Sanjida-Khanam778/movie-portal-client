@@ -13,7 +13,7 @@ const FeaturedMovie = () => {
       .then((data) => setFeatured(data));
   }, []);
   return (
-    <div className="w-10/12 mx-auto my-24">
+    <div className="w-11/12 md:w-10/12 mx-auto my-24">
       <div className={`flex items-center justify-center flex-col ${
               theme === "dark" ? "text-white" : "text-black"
             }`}>
@@ -30,7 +30,7 @@ const FeaturedMovie = () => {
         ))}
       </div>
       <div className="w-full  flex items-center justify-center">
-      <NavLink className='w-1/3' to={`/allMovies`}> 
+      <NavLink className='w-full md:w-1/3' to={`/allMovies`}> 
         <button className="btn text-lg w-full mx-auto bg-[#e02929] font-bold hover:bg-[#df1f1f] text-gray-100 rounded-lg py-2">
         See All Movies <TbMovie className="text-2xl"></TbMovie>
         </button>

@@ -27,16 +27,16 @@ const Navbar = () => {
         </li>
       )}
       <li>
-        <NavLink to={"/extra"}>Extra</NavLink>
+        <NavLink to={"/contact"}>Contact Us</NavLink>
       </li>
     </>
   );
   return (
-    <div className={`w-10/12 mx-auto`}>
-      <div className="navbar">
+    <div className={`w-11/12 lg:w-10/12 mx-auto`}>
+      <div className="navbar px-0">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-0 pr-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -84,7 +84,7 @@ const Navbar = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="mr-1"
+              className="mr-1 hidden md:block"
             >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
@@ -104,7 +104,7 @@ const Navbar = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="mr-3"
+              className="mr-3 hidden md:block"
             >
               <circle cx="12" cy="12" r="5" />
               <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
@@ -128,12 +128,12 @@ const Navbar = () => {
           ) : (
             <>
               <Link className=" mr-3" to={"/login"}>
-                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">
+                <button className="btn bg-[#df1f1f] px-2 md:px-4 hover:bg-[#df1f1f] text-white border-none">
                   Login
                 </button>
               </Link>
               <Link className="" to={"/register"}>
-                <button className="btn bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">
+                <button className="btn px-2 md:px-4 bg-[#df1f1f] hover:bg-[#df1f1f] text-white border-none">
                   Register
                 </button>
               </Link>

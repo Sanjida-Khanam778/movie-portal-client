@@ -3,9 +3,12 @@ import { useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddMovies = () => {
   const [err, setErr] = useState("");
+  const [ratingErr, setRatingErr] = useState("");
   const { user } = useContext(AuthContext);
   const email = user.email;
   const {
@@ -18,10 +21,12 @@ const AddMovies = () => {
 
   const handleRating = (rate) => {
     setRating(rate);
+    setRatingErr("")
   };
 
   const handleForm = (data) => {
     setErr("");
+    setRatingErr("")
     const regex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
 
     const poster = data.poster;
@@ -31,11 +36,19 @@ const AddMovies = () => {
     const year = data.releaseYear;
     const summary = data.summary;
     if (!regex.test(poster)) {
-      alert("not ok");
+      toast.error("Poster must be a link");
+      return;
     }
     if (duration <= 60) {
-      setErr("more than 60");
+      setErr("Must be greater than 60");
+      return;
     }
+
+    if (rating == 0) {
+      setRatingErr("Please Select a rating");
+      return;
+    }
+
     const movie = {
       email,
       poster,
@@ -46,27 +59,24 @@ const AddMovies = () => {
       rating,
       summary,
     };
-    console.log(movie)
     fetch("https://movie-portal-server-ten.vercel.app/movies", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(movie)
+      body: JSON.stringify(movie),
     })
       .then((res) => res.json())
-      .then((data) => {console.log(data)
-        if(data.insertedId){
-            Swal.fire({
-                title: 'Congrates!',
-                text: 'Movie added successfully',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              })
-              
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Congrates!",
+            text: "Movie added successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         }
-      }
-    );
+      });
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -176,6 +186,7 @@ const AddMovies = () => {
                     allowFraction
                   />
                 </div>
+                <p className="text-red-500 mt-3">{ratingErr}</p>
               </div>
             </div>
             <div className="form-control">

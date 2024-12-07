@@ -8,7 +8,7 @@ const MyFavorites = () => {
 
   return (
     <div className="w-10/12 mx-auto">
-      {favorites ? (
+      {!favorites || favorites.length === 0 ? (
         <div className="min-h-[60vh] flex justify-center items-center">
           <p className="text-5xl font-bold"> No Movies to show</p>
         </div>

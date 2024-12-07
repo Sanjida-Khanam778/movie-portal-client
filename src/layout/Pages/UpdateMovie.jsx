@@ -1,27 +1,30 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../Provider/AuthProvider';
-import { useForm } from 'react-hook-form';
-import { Rating } from 'react-simple-star-rating';
-import { useLoaderData, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useForm } from "react-hook-form";
+import { Rating } from "react-simple-star-rating";
+import { useLoaderData, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateMovie = () => {
-  const data = useLoaderData()
-  const {id} = useParams()
-  // const {_id, year, title, summary, poster, genre, duration} = data
-  // console.log(id)
-  const [title, setTitle]  = useState(data?.title)
-  const [poster, setPoster]  = useState(data?.poster)
-  const [genre, setGenre]  = useState(data?.genre)
-  const [duration, setDuration]  = useState(data?.duration)
-  const [year, setYear]  = useState(data?.year)
-  const [ratings, setRatings]  = useState(data?.rating)
-  const [summary, setSummary]  = useState(data?.summary)
+  const [err, setErr] = useState("");
+  const [ratingErr, setRatingErr] = useState("");
+  const data = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const { id } = useParams();
+  const releaseYears = Array.from(
+    { length: new Date().getFullYear() - 2000 + 1 },
+    (_, i) => 2000 + i
+  );
+  const [title, setTitle] = useState(data?.title);
+  const [poster, setPoster] = useState(data?.poster);
+  const [genre, setGenre] = useState(data?.genre);
+  const [duration, setDuration] = useState(data?.duration);
+  const [year, setYear] = useState(data?.year);
+  const [ratings, setRatings] = useState(data?.rating);
+  const [summary, setSummary] = useState(data?.summary);
   const handleChange = (event) => {
     setGenre(event.target.value);
   };
-    const [err, setErr] = useState("");
-  const { user } = useContext(AuthContext);
   const email = user.email;
   const {
     register,
@@ -33,10 +36,12 @@ const UpdateMovie = () => {
 
   const handleRating = (rate) => {
     setRating(rate);
+    setRatingErr("");
   };
 
   const handleForm = (data) => {
     setErr("");
+    setRatingErr("");
     const regex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
 
     const poster = data.poster;
@@ -47,11 +52,19 @@ const UpdateMovie = () => {
     const summary = data.summary;
 
     if (!regex.test(poster)) {
-      alert("not ok");
+      toast.error("Poster must be a link");
+      return;
     }
     if (duration <= 60) {
-      setErr("more than 60");
+      setErr("Must be greater than 60");
+      return;
     }
+
+    if (rating == 0) {
+      setRatingErr("Please Select a rating");
+      return;
+    }
+
     const movie = {
       email,
       poster,
@@ -67,24 +80,22 @@ const UpdateMovie = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(movie)
+      body: JSON.stringify(movie),
     })
       .then((res) => res.json())
-      .then((data) => {console.log(data)
-        if(data.modifiedCount>0){
-            Swal.fire({
-                title: 'Congrates!',
-                text: 'Movie Updated successfully',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              })
-              
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Congrates!",
+            text: "Movie Updated successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         }
-      }
-    );
+      });
   };
-    return (
-        <div className="hero bg-base-200 min-h-screen">
+  return (
+    <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content">
         <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
           <form onSubmit={handleSubmit(handleForm)} className="card-body">
@@ -126,7 +137,8 @@ const UpdateMovie = () => {
                 </label>
                 <select
                   className="select select-bordered w-full relative"
-                 value={genre} onChange={handleChange}
+                  defaultValue={genre}
+                  onChange={handleChange}
                   {...register("genre", { required: "Please select a genre" })}
                 >
                   <option value="">Select a Genre</option>
@@ -144,7 +156,7 @@ const UpdateMovie = () => {
                   <span className="label-text">Duration</span>
                 </label>
                 <input
-                defaultValue={duration}
+                  defaultValue={duration}
                   className="input input-bordered"
                   {...register("duration", { required: "This is required" })}
                   placeholder="minutes"
@@ -159,24 +171,21 @@ const UpdateMovie = () => {
                 <label className="label">
                   <span className="label-text">Release Year</span>
                 </label>
+
                 <select
-                value={year}
-                onChange={handleChange}
-                  id="releaseYear"
+                  defaultValue={year}
                   {...register("releaseYear", {
-                    required: "Please select a release year",
+                    required: "Release year is required",
                   })}
-                  className="select select-bordered"
+                  className="input input-bordered w-full"
                 >
-                  <option value="">Select a Year</option>
-                  {Array.from({ length: 30 }, (_, i) => {
-                    const year = new Date().getFullYear() - i;
-                    return (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    );
-                  })}
+                  <option value="">Select Year</option>
+                  {releaseYears.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                         
                 </select>
                 {errors.releaseYear && (
                   <p className="text-red-500">{errors.releaseYear?.message}</p>
@@ -197,6 +206,7 @@ const UpdateMovie = () => {
                     initialValue={ratings}
                   />
                 </div>
+                <p className="text-red-500 mt-3">{ratingErr}</p>
               </div>
             </div>
             <div className="form-control">
@@ -204,7 +214,7 @@ const UpdateMovie = () => {
                 <span className="label-text">Summary</span>
               </label>
               <textarea
-              defaultValue={summary}
+                defaultValue={summary}
                 className="textarea textarea-bordered"
                 {...register("summary", {
                   required: "This is required",
@@ -222,7 +232,7 @@ const UpdateMovie = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default UpdateMovie;
