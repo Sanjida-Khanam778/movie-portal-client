@@ -19,11 +19,12 @@ const UpdateMovie = () => {
   const [genre, setGenre] = useState(data?.genre);
   const [duration, setDuration] = useState(data?.duration);
   const [year, setYear] = useState(data?.year);
-  const [ratings, setRatings] = useState(data?.rating);
+  const [rating, setRatings] = useState(data?.rating);
   const [summary, setSummary] = useState(data?.summary);
   const handleChange = (event) => {
     setGenre(event.target.value);
   };
+  console.log(data?.genre)
   const email = user.email;
   const {
     register,
@@ -31,10 +32,9 @@ const UpdateMovie = () => {
     formState: { errors },
   } = useForm();
 
-  const [rating, setRating] = useState(0);
 
   const handleRating = (rate) => {
-    setRating(rate);
+    setRatings(rate);
   };
 
   const handleForm = (data) => {
@@ -57,7 +57,6 @@ const UpdateMovie = () => {
       return;
     }
 
-  
 
     const movie = {
       email,
@@ -197,7 +196,7 @@ const UpdateMovie = () => {
                     fillColor="gold"
                     emptyColor="gray"
                     allowFraction
-                    initialValue={ratings}
+                    initialValue={rating}
                   />
                 </div>
               </div>

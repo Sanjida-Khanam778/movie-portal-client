@@ -32,11 +32,7 @@ const SingleMovie = ({ movie }) => {
           </div>
           <div className="flex items-start">
             <span className="ml-1">
-              {genre.map((item) => (
-                <>
-                  <li className="mr-1">{item}</li>
-                </>
-              ))}
+              {genre}
             </span>
           </div>
         </p>

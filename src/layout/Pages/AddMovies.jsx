@@ -138,6 +138,7 @@ const AddMovies = () => {
                   value={selectedOptions}
                   onChange={handleChange}
                   isMulti={true}
+                  // className="bg-base-100 select select-options"
                 />
 
                 <p className="text-red-500">{errors.genre?.message}</p>

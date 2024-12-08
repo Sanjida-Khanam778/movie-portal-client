@@ -36,12 +36,12 @@ const Favorite = ({favorite, favorites, setFavorites}) => {
         })
       }
     return (
-        <div className="p-6 bg-gray-100 border border-gray-300 rounded-2xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+        <div className="p-6 flex flex-col bg-gray-100 border border-gray-300 rounded-2xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">
         <div>
           <img className="rounded-2xl w-full object-cover" src={poster} alt="Movie Poster" />
         </div>
   
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-4 flex-grow">
           <h2 className="text-xl font-semibold text-gray-800">
             <span className="flex items-center">
               Title: <span className="ml-2 text-gray-700">{title}</span>

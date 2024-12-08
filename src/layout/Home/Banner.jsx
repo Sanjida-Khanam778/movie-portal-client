@@ -20,19 +20,19 @@ const Banner = () => {
     },
     {
       id: "slide3",
-      image: "https://i.ibb.co.com/kxSrYqW/slider3.jpg ",
-      title: "Journey Beyond",
-      description: "Embrace the thrill of the unknown and venture far.",
-      director: "",
-      rating: "IMDB Rating: 5.5/10"
+      image: "https://i.ibb.co.com/16HybSq/venom.webp",
+      title: "Venom (2018)",
+      description: "Action | Sci-Fi | Thriller",
+      director: "Ruben Fleischer",
+      rating: "IMDB Rating: 7.5/10"
     },
     {
       id: "slide4",
-      image: "https://i.ibb.co.com/b5NcNgJ/slider4.jpg",
-      title: "THE PLATFORM 2 (2024)",
-      description: "Horror | Sc-Fi",
-      director: "",
-      rating: "IMDB Rating: 5.5/10"
+      image: "https://i.ibb.co.com/hgwrVds/worldwar.jpg",
+      title: "World War Z (2013)",
+      description: "Action | Adventure | Horror",
+      director: "Marc Forster",
+      rating: "IMDB Rating: 8.5/10"
     },
   ];
 
