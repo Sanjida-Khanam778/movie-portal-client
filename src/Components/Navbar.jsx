@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import "./Navbar.css";
 
+
 const Navbar = () => {
   const { user, handleSignOut, theme, handleToggle } = useContext(AuthContext);
   const location = useLocation();

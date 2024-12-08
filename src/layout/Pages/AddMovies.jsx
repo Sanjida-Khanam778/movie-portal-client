@@ -5,12 +5,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Select from 'react-select'
+import Select from "react-select";
 
 const AddMovies = () => {
   const [err, setErr] = useState("");
   const [ratingErr, setRatingErr] = useState("");
-  const [selectedOptions, setSelectedOptions] = useState([])
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const { user } = useContext(AuthContext);
   const email = user.email;
   const {
@@ -22,29 +22,32 @@ const AddMovies = () => {
   const [rating, setRating] = useState(0);
 
   const options = [
-    { value: 'action', label: 'Action' },
-    { value: 'comedy', label: 'Comedy' },
-    { value: 'drama', label: 'Drama' },
-    { value: 'thriller', label: 'Thriller' },
-    { value: 'horror', label: 'Horror' },
-    { value: 'adventure', label: 'Adventure' },
-    { value: 'fantasy', label: 'Fantasy' }
-  ]
-  
+    { value: "action", label: "Action" },
+    { value: "comedy", label: "Comedy" },
+    { value: "drama", label: "Drama" },
+    { value: "thriller", label: "Thriller" },
+    { value: "horror", label: "Horror" },
+    { value: "adventure", label: "Adventure" },
+    { value: "fantasy", label: "Fantasy" },
+  ];
+
+  const handleChange = (selectedOption) => {
+    setSelectedOptions(selectedOption);
+  };
 
   const handleRating = (rate) => {
     setRating(rate);
-    setRatingErr("")
+    setRatingErr("");
   };
 
   const handleForm = (data) => {
     setErr("");
-    setRatingErr("")
+    setRatingErr("");
     const regex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
 
     const poster = data.poster;
     const title = data.title;
-    const genre = data.genre;
+    const genre = selectedOptions.map(item=>item.value) || [];
     const duration = data.duration;
     const year = data.releaseYear;
     const summary = data.summary;
@@ -127,9 +130,15 @@ const AddMovies = () => {
             </div>
             <div className="flex gap-5 flex-col md:flex-row">
               <div className="form-control w-full">
-                <Select options={options} value={selectedOptions}>
-
-                </Select>
+                <label className="label">
+                  <span className="label-text">Genre</span>
+                </label>
+                <Select
+                  options={options}
+                  value={selectedOptions}
+                  onChange={handleChange}
+                  isMulti={true}
+                />
 
                 <p className="text-red-500">{errors.genre?.message}</p>
               </div>

@@ -4,14 +4,18 @@ import { Rating } from "react-simple-star-rating";
 import { FaStar, FaClock, FaCalendarAlt } from "react-icons/fa";
 import { BiCategory, BiDetail } from "react-icons/bi";
 
-
 const SingleMovie = ({ movie }) => {
   const { _id, poster, title, duration, genre, year, rating } = movie;
+  console.log(genre);
 
   return (
     <div className="p-6 bg-gray-100 border border-gray-300 rounded-2xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">
       <div className="h-[200px]">
-        <img className="rounded-2xl h-full w-full object-cover" src={poster} alt="Movie Poster" />
+        <img
+          className="rounded-2xl h-full w-full object-cover"
+          src={poster}
+          alt="Movie Poster"
+        />
       </div>
 
       <div className="space-y-4 mt-4">
@@ -21,18 +25,27 @@ const SingleMovie = ({ movie }) => {
           </span>
         </h2>
 
-        <p className=" flex items-center text-lg text-gray-600">
-        <BiCategory className="mr-2 text-yellow-500" />
+        <p className=" flex items-start text-lg text-gray-600">
+          <div className="flex items-center">
+            <BiCategory className="mr-2 text-yellow-500" />
 
-          <span className="font-semibold">Genre:</span>
-                    <span className="ml-1"> {genre}</span>
-
+            <span className="font-semibold mr-2">Genre:</span>
+          </div>
+          <div className="flex items-start">
+            <span className="ml-1">
+              {genre.map((item) => (
+                <>
+                  <li className="mr-1">{item}</li>
+                </>
+              ))}
+            </span>
+          </div>
         </p>
 
         <p className="flex items-center text-lg text-gray-600">
           <FaClock className="mr-2 text-indigo-500" />
           <span className="font-semibold text-gray-600">Duration:</span>
-           <span className="ml-1">{duration} minutes</span>
+          <span className="ml-1">{duration} minutes</span>
         </p>
 
         <p className="flex items-center text-lg text-gray-600">
@@ -42,7 +55,7 @@ const SingleMovie = ({ movie }) => {
         </p>
 
         <p className="flex items-center text-lg">
-        <FaStar className="mr-2 text-yellow-500" />
+          <FaStar className="mr-2 text-yellow-500" />
 
           <span className="font-semibold text-gray-600">Rating:</span>
           <Rating
@@ -63,5 +76,5 @@ const SingleMovie = ({ movie }) => {
     </div>
   );
 };
-  
+
 export default SingleMovie;

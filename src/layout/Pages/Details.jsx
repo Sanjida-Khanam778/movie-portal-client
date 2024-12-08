@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BiCategory } from "react-icons/bi";
 import { FaCalendarAlt, FaClock, FaStar } from "react-icons/fa";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { MdDeleteForever, MdFavorite, MdSummarize } from "react-icons/md";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -11,7 +11,6 @@ import { GrUpdate } from "react-icons/gr";
 const Details = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
-  const { id } = useParams();
   const movie = useLoaderData();
   const navigate = useNavigate();
   const { _id, poster, title, duration, genre, year, rating, summary } = movie;
@@ -48,7 +47,6 @@ const Details = () => {
   
   const handleFavorites = () => {
     const favorites = {
-      // movieId: _id,
       email,
       poster,
       title,

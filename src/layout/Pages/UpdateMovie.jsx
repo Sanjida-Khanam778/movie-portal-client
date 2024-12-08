@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 
 const UpdateMovie = () => {
   const [err, setErr] = useState("");
-  const [ratingErr, setRatingErr] = useState("");
   const data = useLoaderData();
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -36,12 +35,10 @@ const UpdateMovie = () => {
 
   const handleRating = (rate) => {
     setRating(rate);
-    setRatingErr("");
   };
 
   const handleForm = (data) => {
     setErr("");
-    setRatingErr("");
     const regex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
 
     const poster = data.poster;
@@ -60,10 +57,7 @@ const UpdateMovie = () => {
       return;
     }
 
-    if (rating == 0) {
-      setRatingErr("Please Select a rating");
-      return;
-    }
+  
 
     const movie = {
       email,
@@ -206,7 +200,6 @@ const UpdateMovie = () => {
                     initialValue={ratings}
                   />
                 </div>
-                <p className="text-red-500 mt-3">{ratingErr}</p>
               </div>
             </div>
             <div className="form-control">
