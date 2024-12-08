@@ -12,7 +12,6 @@ const Favorite = ({favorite, favorites, setFavorites}) => {
         })
         .then(res=>res.json())
         .then(data=>{
-          console.log(data)
           Swal.fire({
             title: "Are you sure?",
             text: "Do you want to delete this permanently?",

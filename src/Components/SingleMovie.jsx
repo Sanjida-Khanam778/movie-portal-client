@@ -6,7 +6,6 @@ import { BiCategory, BiDetail } from "react-icons/bi";
 
 const SingleMovie = ({ movie }) => {
   const { _id, poster, title, duration, genre, year, rating } = movie;
-  console.log(genre);
 
   return (
     <div className="p-6 bg-gray-100 border border-gray-300 rounded-2xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">
