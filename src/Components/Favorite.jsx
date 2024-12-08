@@ -15,7 +15,7 @@ const Favorite = ({favorite, favorites, setFavorites}) => {
           console.log(data)
           Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "Do you want to delete this permanently?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -25,7 +25,7 @@ const Favorite = ({favorite, favorites, setFavorites}) => {
             if (result.isConfirmed) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your movie has been deleted from your favorite lists.",
                 icon: "success"
               });
               const remaining = favorites.filter(item=>item._id!==id)

@@ -23,7 +23,7 @@ const Details = () => {
       .then((data) => {
         Swal.fire({
           title: "Are you sure?",
-          text: "You won't be able to revert this!",
+          text: "Do you want to delete this permanently?",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
@@ -34,7 +34,7 @@ const Details = () => {
             
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Your movie has been deleted.",
               icon: "success"
             });
             if (data.deletedCount > 0) {
@@ -76,9 +76,7 @@ const Details = () => {
         }
       });
   };
-  // const handleUpdate=()=>{
-  //   navigate('/update')
-  // }
+ 
   return (
     <div className="min-h-screen flex items-center justify-center my-12">
       <div className="w-11/12 sm:w-3/4 lg:w-1/2 bg-white p-4 md:p-8 rounded-2xl shadow-lg">

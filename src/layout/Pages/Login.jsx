@@ -58,7 +58,7 @@ const Login = () => {
                   placeholder="email"
                   type="email"
                 />
-                <p>{errors.email?.message}</p>
+                <p className="text-red-500">{errors.email?.message}</p>
               </div>
               <div className="form-control">
                 <label className="label">
@@ -70,7 +70,7 @@ const Login = () => {
                   placeholder="password"
                   type="password"
                 />
-                <p>{errors.email?.message}</p>
+                <p className="text-red-500">{errors.email?.message}</p>
 
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">

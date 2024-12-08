@@ -5,10 +5,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Select from 'react-select'
 
 const AddMovies = () => {
   const [err, setErr] = useState("");
   const [ratingErr, setRatingErr] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState([])
   const { user } = useContext(AuthContext);
   const email = user.email;
   const {
@@ -18,6 +20,17 @@ const AddMovies = () => {
   } = useForm();
 
   const [rating, setRating] = useState(0);
+
+  const options = [
+    { value: 'action', label: 'Action' },
+    { value: 'comedy', label: 'Comedy' },
+    { value: 'drama', label: 'Drama' },
+    { value: 'thriller', label: 'Thriller' },
+    { value: 'horror', label: 'Horror' },
+    { value: 'adventure', label: 'Adventure' },
+    { value: 'fantasy', label: 'Fantasy' }
+  ]
+  
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -114,20 +127,9 @@ const AddMovies = () => {
             </div>
             <div className="flex gap-5 flex-col md:flex-row">
               <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Genre</span>
-                </label>
-                <select
-                  className="select select-bordered w-full relative"
-                  {...register("genre", { required: "Please select a genre" })}
-                >
-                  <option value="">Select a Genre</option>
-                  <option value="action">Action</option>
-                  <option value="comedy">Comedy</option>
-                  <option value="drama">Drama</option>
-                  <option value="thriller">Thriller</option>
-                  <option value="horror">Horror</option>
-                </select>
+                <Select options={options} value={selectedOptions}>
+
+                </Select>
 
                 <p className="text-red-500">{errors.genre?.message}</p>
               </div>
