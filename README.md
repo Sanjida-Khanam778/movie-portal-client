@@ -21,6 +21,25 @@ Movie Portal is a web application that allows users to explore, add, and manage 
 - Database: Firebase
 - Authentication: Firebase Authentication
 
+## Dependencies:
+  ```
+  "dependencies": {
+    "firebase": "^11.0.2",
+    "localforage": "^1.10.0",
+    "match-sorter": "^8.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.2",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^7.0.2",
+    "react-select": "^5.8.3",
+    "react-simple-star-rating": "^5.1.7",
+    "react-toastify": "^10.0.6",
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.14.5"
+  }
+  ```
+
 ## Getting Started
 ### Prerequisites
 - Node.js
