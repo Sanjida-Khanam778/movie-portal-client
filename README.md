@@ -14,7 +14,7 @@ Movie Portal is a web application that allows users to explore, add, and manage 
 - Users can search for a movie on the "All Movies" page.
 - On the movie details page, users can add a movie to their favorites list.
 - Users can manage their favorite list and remove movies as needed.
-
+ 
 ## Technologies Used
 - Frontend: React, Tailwind CSS
 - Backend: Node.js, Express
